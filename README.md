@@ -340,6 +340,379 @@ Possible enhancements:
 - Add Docker support
 - Add CI/CD pipeline improvements
 
+# Explanation of Project Components
+
+## 1. Maven (`pom.xml`)
+
+**Technology:** Maven
+
+The `pom.xml` file is the project's configuration file. It manages:
+
+* Project dependencies
+* Java version
+* Build process
+* Plugins
+
+Examples of dependencies include:
+
+* Spring Boot
+* Spring Data JPA
+* MySQL Connector
+* Thymeleaf
+
+Maven automatically downloads these libraries when the project is built.
+
+---
+
+## 2. Java (`src/main/java`)
+
+**Technology:** Java
+
+This folder contains the backend source code of the application.
+
+All business logic, controllers, models, repositories, and services are written in Java.
+
+---
+
+## 3. Spring Boot (`EmployeeManagementApplication.java`)
+
+**Technology:** Spring Boot
+
+This is the main class of the application.
+
+Responsibilities:
+
+* Starts the Spring Boot application
+* Starts the embedded Tomcat server
+* Loads all Spring components automatically
+
+This file acts as the entry point of the application.
+
+---
+
+## 4. Spring MVC (`controller`)
+
+**File:**
+
+```
+controller/
+└── EmployeeController.java
+```
+
+**Technology:** Spring MVC
+
+The controller receives HTTP requests from the browser and returns the appropriate web page.
+
+Example flow:
+
+```
+Browser
+      │
+      ▼
+EmployeeController
+      │
+      ▼
+EmployeeService
+```
+
+Typical responsibilities:
+
+* Display employee list
+* Add employee
+* Update employee
+* Delete employee
+
+---
+
+## 5. Model (`model/Employee.java`)
+
+**Technology:**
+
+* Java
+* Spring Data JPA
+* Hibernate
+
+The model represents an Employee entity.
+
+Example fields:
+
+* Employee ID
+* Name
+* Email
+* Salary
+
+Hibernate maps this Java class directly to the Employee table in the MySQL database.
+
+---
+
+## 6. Repository (`repository/EmployeeRepository.java`)
+
+**Technology:**
+
+* Spring Data JPA
+* Hibernate
+
+The repository communicates with the database.
+
+It provides built-in methods such as:
+
+* save()
+* findAll()
+* findById()
+* deleteById()
+
+These methods allow database operations without writing SQL queries manually.
+
+Flow:
+
+```
+Controller
+      │
+      ▼
+Service
+      │
+      ▼
+Repository
+      │
+      ▼
+MySQL Database
+```
+
+---
+
+## 7. Service (`service/EmployeeService.java`)
+
+**Technology:**
+
+* Java
+* Spring Boot
+
+The service layer contains the business logic of the application.
+
+Responsibilities:
+
+* Validate data
+* Process employee information
+* Communicate with the repository layer
+
+Example:
+
+```
+Controller
+      │
+      ▼
+EmployeeService
+      │
+      ▼
+EmployeeRepository
+```
+
+---
+
+## 8. Database Configuration (`application.properties`)
+
+**Technology:**
+
+* Spring Boot
+* MySQL
+
+This file stores application configuration.
+
+It contains:
+
+* Database URL
+* Username
+* Password
+* JPA settings
+* Hibernate configuration
+
+Spring Boot reads this file automatically during application startup.
+
+---
+
+## 9. Thymeleaf (`templates`)
+
+**Files:**
+
+```
+templates/
+├── index.html
+└── edit.html
+```
+
+**Technology:** Thymeleaf
+
+Thymeleaf is a server-side template engine.
+
+It receives data from the controller and dynamically generates HTML pages.
+
+Example:
+
+```
+EmployeeController
+        │
+        ▼
+Employee List
+        │
+        ▼
+index.html
+        │
+        ▼
+Browser
+```
+
+---
+
+## 10. HTML
+
+**Files:**
+
+* index.html
+* edit.html
+
+**Technology:** HTML
+
+HTML provides the structure of the web pages.
+
+It defines:
+
+* Forms
+* Tables
+* Buttons
+* Text fields
+* Headings
+
+---
+
+## 11. CSS (`static/style.css`)
+
+**Technology:** CSS
+
+CSS controls the appearance of the application.
+
+It is used for:
+
+* Colors
+* Fonts
+* Layout
+* Spacing
+* Responsive styling
+
+---
+
+## 12. Bootstrap
+
+**Technology:** Bootstrap
+
+Bootstrap provides ready-made UI components such as:
+
+* Buttons
+* Forms
+* Tables
+* Navigation bars
+* Cards
+* Responsive layouts
+
+It helps create a modern and mobile-friendly user interface with minimal custom CSS.
+
+---
+
+## 13. GitHub
+
+**Technology:** GitHub
+
+GitHub is used to:
+
+* Store the project source code
+* Track version history
+* Collaborate with team members
+* Deploy the application to Azure
+
+Deployment flow:
+
+```
+Developer
+      │
+      ▼
+GitHub Repository
+      │
+      ▼
+Azure App Service
+```
+
+---
+
+## 14. Azure App Service
+
+**Technology:** Microsoft Azure
+
+Azure App Service hosts the Spring Boot application.
+
+After deployment, users can access the application through a public URL.
+
+Example:
+
+```
+https://employee-management-sys.azurewebsites.net
+```
+
+---
+
+## 15. Azure Database for MySQL
+
+**Technology:** Azure Database for MySQL
+
+This cloud-hosted MySQL database stores all employee information.
+
+The Spring Boot application connects to this database using the connection details configured in `application.properties` or environment variables.
+
+---
+
+# Application Architecture
+
+```
+                User
+                  │
+                  ▼
+      HTML + CSS + Bootstrap
+                  │
+                  ▼
+             Thymeleaf
+                  │
+                  ▼
+       Spring MVC Controller
+                  │
+                  ▼
+          Employee Service
+                  │
+                  ▼
+     Spring Data JPA Repository
+                  │
+                  ▼
+             Hibernate
+                  │
+                  ▼
+      Azure Database for MySQL
+```
+
+---
+
+# Summary
+
+This project follows the **Spring Boot MVC architecture**, where each layer has a specific responsibility:
+
+* **Java** implements the application's business logic.
+* **Spring Boot** simplifies application development and configuration.
+* **Spring MVC** processes HTTP requests and responses.
+* **Spring Data JPA** and **Hibernate** manage communication with the MySQL database.
+* **Thymeleaf** generates dynamic web pages.
+* **HTML, CSS, and Bootstrap** build a responsive and user-friendly interface.
+* **Maven** manages project dependencies and builds.
+* **GitHub** stores and versions the source code.
+* **Azure App Service** hosts the application.
+* **Azure Database for MySQL** securely stores employee data in the cloud.
+
+
 ---
 
 # Author
