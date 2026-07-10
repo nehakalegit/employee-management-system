@@ -158,11 +158,11 @@ spring.jpa.hibernate.ddl-auto=update
 Example:
 
 ```properties
-spring.datasource.url=jdbc:mysql://employee-mysql-server.mysql.database.azure.com:3306/employeedb?useSSL=true
+spring.datasource.url=jdbc:mysql://employee-management-server.mysql.database.azure.com:3306/employeedb?useSSL=true
 
 spring.datasource.username=admin123
 
-spring.datasource.password=<password>
+spring.datasource.password=admin123!
 
 spring.jpa.hibernate.ddl-auto=update
 
